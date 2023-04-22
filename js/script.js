@@ -2,13 +2,10 @@ const form = document.getElementById("generate-form");
 const qr = document.getElementById("qrcode");
 
 const onGenerateSubmit = (e) => {
-  console.log("ddddddd5al");
   e.preventDefault();
   clearUI();
   const url = document.getElementById("url").value;
   const size = document.getElementById("size").value;
-  console.log("first url", url);
-  console.log("first size", size);
   if (url === "") {
     alert("Please enter a URL");
   } else {
@@ -23,8 +20,6 @@ const onGenerateSubmit = (e) => {
       }, 50);
     }, 1000);
   }
-  console.log("second url", url);
-  console.log("second size", size);
 };
 
 const generateQRCode = (url, size) => {
@@ -56,8 +51,8 @@ const createSaveBtn = (saveUrl) => {
   link.id = "save-link";
   link.classList =
     "bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 rounded w-1/3 m-auto my-5";
-  link.href = saveUrl;
-  link.download = "qrcode";
+  link.href = qr.querySelector("canvas").toDataURL("image/png");
+  link.download = "qrcode.png";
   link.innerHTML = "Save Image";
   document.getElementById("generated").appendChild(link);
 };
